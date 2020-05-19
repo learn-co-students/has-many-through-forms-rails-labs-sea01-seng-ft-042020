@@ -1,0 +1,18 @@
+<%= form_for(@post) do |f| %>
+    <%= f.fields_for :comments, @comment do |comment_fields| %>
+
+    <%= f.text_field :content %>
+    
+    <% end %>
+    
+    <%= f.collection_select :user_id, User.all, :id, :name %>           
+    <%= f.fields_for :user, @comment do |user_field| %>
+        <%= user_field.text_field :username %>
+        <%= user_field.text_field :email %>
+    <% end %>
+    
+    <%= f.submit "Create Comment" %>   
+<% end %>
+
+
+
